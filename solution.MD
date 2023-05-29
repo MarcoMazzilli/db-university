@@ -44,3 +44,20 @@ FROM `departments`;
 SELECT *  
 FROM `teachers`  
 WHERE `phone` IS NULL  
+
+---
+## BONUS 1
+SELECT COUNT(*), YEAR(`enrolment_date`) AS 'anno_di_iscrizione'
+FROM `students`
+GROUP BY(`anno_di_iscrizione`);
+
+---
+## BONUS 2
+SELECT COUNT(*) as professori, `office_address` as 'indirizzo'  
+FROM `teachers`  
+GROUP BY (`indirizzo`)  
+HAVING `professori` <> 1  
+ORDER BY `professori`;
+
+---
+## BONUS 3
