@@ -1,0 +1,84 @@
+## Solution 1 
+```sql
+SELECT `students`.`name` as 'nome_studente', `degrees`.`name` as 'dipartimento'   
+FROM `degrees`  
+INNER JOIN `students`  
+ON `degrees`.`id` = `students`.`degree_id`  
+WHERE `students`.`degree_id` = 53;
+##### Second solution   
+___WHERE `degrees`.`name` = 'Corso di Laurea in Economia';___
+```
+
+---
+## Solution 2
+```sql
+SELECT `courses`.`name` as 'nome_del_corso', `degrees`.`level` as 'titolo', `departments`.`name` AS 'dipartimento'    
+FROM `courses`  
+INNER JOIN `degrees`  
+ON `courses`.`degree_id` = `degrees`.`id`  
+INNER JOIN `departments`  
+ON `departments`.`id` = `degrees`.`department_id`  
+WHERE `departments`.`id` =  7  
+AND `degrees`.`level` = 'magistrale';  
+```
+
+---
+## Solution 3
+```sql
+SELECT `teachers`.`id` AS 'teacher_id', `teachers`.`name` AS 'teacher_name', `courses`.`name` AS 'course_name'
+FROM `teachers`
+INNER JOIN `course_teacher` 
+ON `teachers`.`id` = `course_teacher`.`teacher_id`
+INNER JOIN `courses`
+ON `courses`.`id` = `course_teacher`.`course_id`
+WHERE `teachers`.`id`  = 44;
+```
+
+---
+## Solution 4
+```sql
+SELECT `students`.`name` as 'nome_studente', `students`.`surname` AS 'cognome_studente', `degrees`.`name` AS 'corso_di_laurea', `departments`.`name` AS 'dipartimento'
+FROM `students`
+INNER JOIN `degrees`
+ON `degrees`.`id` = `students`.`degree_id`
+INNER JOIN `departments`
+ON `departments`.`id` = `degrees`.`department_id`
+ORDER BY `students`.`name`, `students`.`surname`;
+```
+
+---
+## Solution 5
+```sql
+SELECT `degrees`.`name` AS 'percorso_di_laurea' , `courses`.`name` AS 'nome_corso', `departments`.`name` AS 'nome_dipartimento'
+FROM `courses`
+JOIN `degrees`
+ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `departments`
+ON `departments`.`id` = `degrees`.`department_id`;
+```
+
+---
+## Solution 6 70??
+```sql
+SELECT DISTINCT `teachers`.`id` AS 'teacher_id' ,`teachers`.`name` AS 'teacher_name',`teachers`.`surname` AS 'teacher_surname', `departments`.`name` AS 'nome_dipartimento'
+FROM `departments`
+JOIN `degrees`
+ON `departments`.`id` = `degrees`.`department_id`
+JOIN `courses`
+ON `degrees`.`id` = `courses`.`degree_id`
+JOIN `course_teacher`
+ON `courses`.`id` = `course_teacher`.`course_id`
+JOIN `teachers`
+ON `teachers`.`id` = `course_teacher`.`teacher_id`
+WHERE departments.name like '%matematica%'
+ORDER BY `teachers`.`id`;
+```
+
+---
+## Solution 7 
+```sql
+SELECT `students`.`id` as 'id_studente', `students`.`name` AS 'nome_studente', `students`.`surname` AS 'cognome_studente'
+FROM `students`
+JOIN `exam_student`
+ON `exam_student`.`student_id` = `students`.`id`
+```
